@@ -4,7 +4,6 @@ const chalk = require('chalk');
 const clear = require('clear');
 const figlet = require('figlet');
 
-const files = require('./lib/files');
 const repo = require('./lib/repo');
 const inquirer = require('./lib/inquirer');
 
@@ -13,17 +12,15 @@ clear();
 
 console.log(
   chalk.yellow(
-    figlet.textSync('Ginit', { horizontalLayout: 'full' })
+    figlet.textSync('CART CLI')
   )
 );
 
 const run = async () => {
   try {
-    // Retrieve & Set Authentication Token
-    await inquirer.askGithubCredentials()
+    await inquirer.askProjectName()
 
-    // Create .gitignore file
-    await repo.createGitignore();
+    await repo.createTestFile();
 
     // Set up local repository and push to remote
     await repo.setupRepo();
@@ -31,16 +28,7 @@ const run = async () => {
     console.log(chalk.green('All done!'));
   } catch(err) {
       if (err) {
-        switch (err.status) {
-          case 401:
-            console.log(chalk.red('Couldn\'t log you in. Please provide correct credentials/token.'));
-            break;
-          case 422:
-            console.log(chalk.red('There is already a remote repository or token with the same name'));
-            break;
-          default:
-            console.log(chalk.red(err));
-        }
+        console.log(chalk.red(err));
       }
   }
 };
