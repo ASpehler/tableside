@@ -18,12 +18,12 @@ console.log(
 
 const run = async () => {
   try {
-    await inquirer.askProjectName()
+    const responses = await inquirer.askProjectName()
 
     await repo.createTestFile();
 
     // Set up local repository and push to remote
-    await repo.setupRepo();
+    await repo.setupRepo(responses);
 
     console.log(chalk.green('All done!'));
   } catch(err) {

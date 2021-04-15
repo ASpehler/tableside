@@ -27,10 +27,10 @@ module.exports = {
       },
       {
         type: 'list',
-        name: 'visibility',
-        message: 'Public or private:',
-        choices: [ 'public', 'private' ],
-        default: 'public'
+        name: 'ui',
+        message: 'Which UI do you want to use:',
+        choices: [ 'SemanticUI', 'Bootstrap' ],
+        default: 'SemanticUI'
       }
     ];
     return inquirer.prompt(questions);
