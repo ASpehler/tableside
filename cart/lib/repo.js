@@ -13,7 +13,7 @@ const UIs = {
 
 module.exports = {
   setupRepo: async (responses) => {
-    const srcDir = '../boilerplates/meteor/skel-react/';
+    const srcDir = `../skeletons/meteor/${responses.frontend.toLowerCase()}/`;
     const destDir = '../src/';
 
     const status = new Spinner('Generating Boilerplate...');

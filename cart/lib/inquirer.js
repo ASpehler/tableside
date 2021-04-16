@@ -27,6 +27,13 @@ module.exports = {
       },
       {
         type: 'list',
+        name: 'frontend',
+        message: 'Which frontend do you want to use:',
+        choices: [ 'React', 'Apollo' ],
+        default: 'React'
+      },
+      {
+        type: 'list',
         name: 'ui',
         message: 'Which UI do you want to use:',
         choices: [ 'None', 'SemanticUI', 'Bootstrap' ],
