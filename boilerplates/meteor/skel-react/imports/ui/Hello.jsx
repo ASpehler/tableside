@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+{{! BUTTON_IMPORT !}}
 
 export const Hello = () => {
   const [counter, setCounter] = useState(0);
@@ -9,7 +10,7 @@ export const Hello = () => {
 
   return (
     <div>
-      <button onClick={increment}>Click Me</button>
+      <{{! BUTTON !}} onClick={increment}>Click Me</{{! BUTTON !}}>
       <p>You've pressed the button {counter} times.</p>
     </div>
   );

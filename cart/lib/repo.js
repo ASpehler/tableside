@@ -5,11 +5,12 @@ const replace = require('replace-in-file');
 const Spinner = CLI.Spinner;
 const touch = require('touch');
 const _ = require('lodash');
-
+const util = require('util');
+const exec = util.promisify(require('child_process').exec);
 const inquirer = require('./inquirer');
 
 module.exports = {
-  createTestFile: async () => {
+  createTestFile: async (responses) => {
     // const filelist = _.without(fs.readdirSync('.'), '.git', 'test2.tmp');
 
     // if (filelist.length) {
@@ -42,27 +43,66 @@ module.exports = {
     // create folder
     await fs.copy(srcDir, destDir).then(() => {
         console.log('Boilerplate generated!');
-        status.stop();
       })
       .catch(err => {
         console.error(err)
       });
 
+    let UI, CSS_IMPORT, NPM;
+
+    if (responses.ui === 'SemanticUI') {
+      UI = 'semantic-ui-react';
+      CSS_IMPORT = `import 'semantic-ui-css/semantic.min.css';`;
+      NPM = 'npm install semantic-ui-react semantic-ui-css';
+    } else {
+      UI = 'react-bootstrap';
+      CSS_IMPORT = `import 'bootstrap/dist/css/bootstrap.min.css';`;
+      NPM = 'npm install react-bootstrap bootstrap';
+    }
+
     const METEOR_RELEASE = 'METEOR@2.1';
+    const BUTTON_IMPORT = `import { Button } from '${UI}'`;
+    const BUTTON = 'Button';
+    const CONTAINER_IMPORT = `import { Container } from '${UI}'`;
+    const CONTAINER = 'Container';
 
     const options = {
-        files: "../src/.meteor/*",
-        from: [/{{! METEOR_RELEASE !}}/g],
-        to: [METEOR_RELEASE]
+        files: [
+          '../src/.meteor/*',
+          '../src/*',
+          '../src/*/*',
+          '../src/*/*/*',
+        ],
+        from: [
+          /{{! METEOR_RELEASE !}}/g,
+          /{{! CSS_IMPORT !}}/g,
+          /{{! BUTTON_IMPORT !}}/g,
+          /{{! BUTTON !}}/g,
+          /{{! CONTAINER_IMPORT !}}/g,
+          /{{! CONTAINER !}}/g
+        ],
+        to: [
+          METEOR_RELEASE,
+          CSS_IMPORT,
+          BUTTON_IMPORT,
+          BUTTON,
+          CONTAINER_IMPORT,
+          CONTAINER
+        ]
     };
 
-    replace(options)
+    await replace(options)
       .then(result => {
-          console.log("Replacement results: ",result);
+          // console.log('Replacement results: ', result);
       })
       .catch(error => {
           console.log(error);
       });
+
+    await exec(`cd ../src && npm install && ${NPM}`).then(_ => {
+      console.log('npm package added!');
+      status.stop();
+    });
   },
 
   setupRepo: async () => {
