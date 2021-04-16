@@ -29,7 +29,8 @@ module.exports = {
       });
 
     // create folder
-    await fs.copy(srcDir, destDir).then(() => {
+    await fs.copy(srcDir, destDir)
+      .then(() => {
         console.log('Boilerplate generated!');
       })
       .catch(err => {
