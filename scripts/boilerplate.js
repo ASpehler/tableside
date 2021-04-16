@@ -12,9 +12,9 @@ const UIs = {
 }
 
 module.exports = {
-  setupRepo: async (responses) => {
-    const srcDir = `../skeletons/meteor/${responses.frontend.toLowerCase()}/`;
-    const destDir = '../src/';
+  setupBoilerplate: async (responses) => {
+    const srcDir = `./skeletons/meteor/${responses.frontend.toLowerCase()}/`;
+    const destDir = './src/';
 
     const status = new Spinner('Generating Boilerplate...');
     status.start();
@@ -50,10 +50,10 @@ module.exports = {
 
     const options = {
         files: [
-          '../src/.meteor/*',
-          '../src/*',
-          '../src/*/*',
-          '../src/*/*/*',
+          './src/.meteor/*',
+          './src/*',
+          './src/*/*',
+          './src/*/*/*',
         ],
         from: [],
         to: []
@@ -72,7 +72,7 @@ module.exports = {
           console.log(error);
       });
 
-    await exec(`cd ../src && npm install ${toReplace['NPM']}`).then(_ => {
+    await exec(`cd ./src && npm install ${toReplace['NPM']}`).then(_ => {
       console.log('npm package added!');
       status.stop();
     });

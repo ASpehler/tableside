@@ -4,9 +4,8 @@ const chalk = require('chalk');
 const clear = require('clear');
 const figlet = require('figlet');
 
-const repo = require('./lib/repo');
-const inquirer = require('./lib/inquirer');
-
+const repo = require('./scripts/boilerplate');
+const inquirer = require('./scripts/inquirer');
 
 clear();
 
@@ -18,9 +17,9 @@ console.log(
 
 const run = async () => {
   try {
-    const responses = await inquirer.askProjectName()
+    const responses = await inquirer.askProjectInfo();
 
-    await repo.setupRepo(responses);
+    await repo.setupBoilerplate(responses);
 
     console.log(chalk.green('All done!'));
   } catch(err) {

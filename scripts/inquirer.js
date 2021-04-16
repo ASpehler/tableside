@@ -1,8 +1,8 @@
 const inquirer = require('inquirer');
-const files = require('./files');
+const files = require('./directories');
 
 module.exports = {
-  askProjectName: () => {
+  askProjectInfo: () => {
     const argv = require('minimist')(process.argv.slice(2));
 
     const questions = [
@@ -38,19 +38,6 @@ module.exports = {
         message: 'Which UI do you want to use:',
         choices: [ 'None', 'SemanticUI', 'Bootstrap' ],
         default: 'None'
-      }
-    ];
-    return inquirer.prompt(questions);
-  },
-
-  askPaths: (filelist) => {
-    const questions = [
-      {
-        type: 'checkbox',
-        name: 'ignore',
-        message: 'Select the files and/or folders you want to include:',
-        choices: filelist,
-        default: ['node_modules']
       }
     ];
     return inquirer.prompt(questions);
