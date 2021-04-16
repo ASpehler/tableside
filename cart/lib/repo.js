@@ -35,23 +35,34 @@ module.exports = {
     const toReplace = {
       NAME: responses.name,
       DESCRIPTION: responses.description,
-      METEOR_RELEASE: 'METEOR@2.1',
-      BUTTON: 'Button',
-      CONTAINER: 'Container'
+      METEOR_RELEASE: 'METEOR@2.1'
     };
 
     if (responses.ui === 'SemanticUI') {
       toReplace['UI'] = 'semantic-ui-react';
       toReplace['CSS_IMPORT'] = `import 'semantic-ui-css/semantic.min.css';`;
-      toReplace['NPM'] = 'npm install semantic-ui-react semantic-ui-css';
-    } else {
+      toReplace['NPM'] = '&& npm install semantic-ui-react semantic-ui-css';
+    } else if (responses.ui === 'Bootstrap') {
       toReplace['UI'] = 'react-bootstrap';
       toReplace['CSS_IMPORT'] = `import 'bootstrap/dist/css/bootstrap.min.css';`;
-      toReplace['NPM'] = 'npm install react-bootstrap bootstrap';
+      toReplace['NPM'] = '&& npm install react-bootstrap bootstrap';
+    } else {
+      toReplace['UI'] = '';
+      toReplace['CSS_IMPORT'] = '';
+      toReplace['NPM'] = '';
     }
 
-    toReplace['BUTTON_IMPORT'] = `import { Button } from '${toReplace['UI']}'`;
-    toReplace['CONTAINER_IMPORT'] = `import { Container } from '${toReplace['UI']}'`;
+    if (responses.ui === 'None') {
+      toReplace['BUTTON_IMPORT'] = '';
+      toReplace['CONTAINER_IMPORT'] = '';
+      toReplace['BUTTON'] = 'button'
+      toReplace['CONTAINER'] = 'div'
+    } else {
+      toReplace['BUTTON_IMPORT'] = `import { Button } from '${toReplace['UI']}'`;
+      toReplace['CONTAINER_IMPORT'] = `import { Container } from '${toReplace['UI']}'`;
+      toReplace['BUTTON'] = 'Button'
+      toReplace['CONTAINER'] = 'Container'
+    }
 
     const options = {
         files: [
@@ -77,7 +88,7 @@ module.exports = {
           console.log(error);
       });
 
-    await exec(`cd ../src && npm install && ${toReplace['NPM']}`).then(_ => {
+    await exec(`cd ../src && npm install ${toReplace['NPM']}`).then(_ => {
       console.log('npm package added!');
       status.stop();
     });

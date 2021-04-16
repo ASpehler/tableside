@@ -29,8 +29,8 @@ module.exports = {
         type: 'list',
         name: 'ui',
         message: 'Which UI do you want to use:',
-        choices: [ 'SemanticUI', 'Bootstrap' ],
-        default: 'SemanticUI'
+        choices: [ 'None', 'SemanticUI', 'Bootstrap' ],
+        default: 'None'
       }
     ];
     return inquirer.prompt(questions);
