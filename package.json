@@ -1,7 +1,7 @@
 {
-  "name": "cart",
+  "name": "boilercart",
   "version": "1.0.0",
-  "description": "cart cli for boilercart",
+  "description": "cli to create boilercart",
   "main": "index.js",
   "bin": {
     "cart": "./index.js"
