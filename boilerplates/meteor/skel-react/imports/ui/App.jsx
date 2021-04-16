@@ -5,7 +5,7 @@ import { Info } from './Info.jsx';
 
 export const App = () => (
   <{{! CONTAINER !}}>
-    <h1>Welcome to Meteor!</h1>
+    <h1>Welcome to {{! NAME !}}!</h1>
     <Hello/>
     <Info/>
   </{{! CONTAINER !}}>

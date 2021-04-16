@@ -33,6 +33,8 @@ module.exports = {
       });
 
     const toReplace = {
+      NAME: responses.name,
+      DESCRIPTION: responses.description,
       METEOR_RELEASE: 'METEOR@2.1',
       BUTTON: 'Button',
       CONTAINER: 'Container'
