@@ -1,0 +1,9 @@
+{
+  "BUTTON_IMPORT": "import { Button } from 'react-bootstrap';",
+  "BUTTON": "Button",
+  "CONTAINER_IMPORT": "import { Container } from 'react-bootstrap';",
+  "CONTAINER": "Container",
+  "CSS_IMPORT": "import 'bootstrap/dist/css/bootstrap.min.css';",
+  "NPM": "&& npm install react-bootstrap bootstrap",
+  "UI": "react-bootstrap"
+}

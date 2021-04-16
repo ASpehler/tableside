@@ -1,0 +1,9 @@
+{
+  "BUTTON_IMPORT": "import { Button } from 'semantic-ui-react';",
+  "BUTTON": "Button",
+  "CONTAINER_IMPORT": "import { Container } from 'semantic-ui-react';",
+  "CONTAINER": "Container",
+  "CSS_IMPORT": "import 'semantic-ui-css/semantic.min.css';",
+  "NPM": "&& npm install semantic-ui-react semantic-ui-css",
+  "UI": "semantic-ui-react"
+}

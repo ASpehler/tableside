@@ -5,7 +5,11 @@ const Spinner = CLI.Spinner;
 const _ = require('lodash');
 const util = require('util');
 const exec = util.promisify(require('child_process').exec);
-const inquirer = require('./inquirer');
+const UIs = {
+  "SemanticUI": {...require('../modules/semanticUI-react.json')},
+  "Bootstrap": {...require('../modules/bootstrap-react.json')},
+  "None": {...require('../modules/none.json')}
+}
 
 module.exports = {
   setupRepo: async (responses) => {
@@ -21,7 +25,7 @@ module.exports = {
         console.log('Previous version removed!');
       })
       .catch(err => {
-        console.error(err)
+        console.error(err);
       });
 
     // create folder
@@ -32,37 +36,16 @@ module.exports = {
         console.error(err)
       });
 
-    const toReplace = {
+    const base = {
       NAME: responses.name,
       DESCRIPTION: responses.description,
       METEOR_RELEASE: 'METEOR@2.1'
     };
 
-    if (responses.ui === 'SemanticUI') {
-      toReplace['UI'] = 'semantic-ui-react';
-      toReplace['CSS_IMPORT'] = `import 'semantic-ui-css/semantic.min.css';`;
-      toReplace['NPM'] = '&& npm install semantic-ui-react semantic-ui-css';
-    } else if (responses.ui === 'Bootstrap') {
-      toReplace['UI'] = 'react-bootstrap';
-      toReplace['CSS_IMPORT'] = `import 'bootstrap/dist/css/bootstrap.min.css';`;
-      toReplace['NPM'] = '&& npm install react-bootstrap bootstrap';
-    } else {
-      toReplace['UI'] = '';
-      toReplace['CSS_IMPORT'] = '';
-      toReplace['NPM'] = '';
-    }
-
-    if (responses.ui === 'None') {
-      toReplace['BUTTON_IMPORT'] = '';
-      toReplace['CONTAINER_IMPORT'] = '';
-      toReplace['BUTTON'] = 'button'
-      toReplace['CONTAINER'] = 'div'
-    } else {
-      toReplace['BUTTON_IMPORT'] = `import { Button } from '${toReplace['UI']}'`;
-      toReplace['CONTAINER_IMPORT'] = `import { Container } from '${toReplace['UI']}'`;
-      toReplace['BUTTON'] = 'Button'
-      toReplace['CONTAINER'] = 'Container'
-    }
+    let toReplace = {
+      ...base,
+      ...UIs[responses.ui]
+    };
 
     const options = {
         files: [
