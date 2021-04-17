@@ -7,13 +7,16 @@ const figlet = require('figlet');
 const repo = require('./scripts/boilerplate');
 const inquirer = require('./scripts/inquirer');
 
+
 clear();
 
-console.log(
-  chalk.yellow(
-    figlet.textSync('CART CLI')
-  )
-);
+console.log(chalk.yellow(`
+  _  ◍   ◍  ◍      ____          _  _               ____              _
+    \\__◍__◍__     | __ )   ___  (_)| |  ___  _ __  / ___| __ _  _ __ | |_
+     \\##◍###/     |  _ \\  / _ \\ | || | / _ \\| '__|| |    / _\` || '__|| __|
+      |####/      | |_) || (_) || || ||  __/| |   | |___| (_| || |   | |_
+      |____.      |____/  \\___/ |_||_| \\___||_|    \\____|\\__,_||_|    \\__|
+______o____o__________________________________________________________________\n`));
 
 const run = async () => {
   try {
