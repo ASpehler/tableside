@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "cli to create boilercart",
   "main": "index.js",
+  "private": true,
   "bin": {
     "cart": "./index.js"
   },
