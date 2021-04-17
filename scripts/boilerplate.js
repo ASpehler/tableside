@@ -60,8 +60,13 @@ module.exports = {
     };
 
     _.keys(toReplace).forEach(key => {
-      options.from.push(new RegExp(`{{! ${key} !}}`, 'g'));
-      options.to.push(toReplace[key]);
+      if (toReplace[key]) {
+        options.from.push(new RegExp(`{{! ${key} !}}`, 'g'));
+        options.to.push(toReplace[key]);
+      } else {
+        options.from.push(new RegExp(`{{! ${key} !}}\n`, 'g'));
+        options.to.push('');
+      }
     });
 
     await replace(options)
