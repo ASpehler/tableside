@@ -7,14 +7,14 @@ module.exports = {
       {
         type: 'input',
         name: 'name',
-        message: 'Enter a name for the repository:',
+        message: 'Enter a name for your project:',
         default: files.getCurrentDirectoryBase(),
         validate(value) {
           if (value.length) {
             return true;
           }
 
-          return 'Please enter a name for the repository.';
+          return 'Please enter a name for your project.';
         },
       },
       {
