@@ -29,7 +29,7 @@ const run = async () => {
 
     const directoryExists = directories.directoryExists(projectName);
     if (directoryExists) {
-      console.error(chalk.red('Directory already exist\n'));
+      console.error(chalk.red('Directory already exist.\n'));
       return;
     }
 
@@ -45,7 +45,7 @@ const run = async () => {
     console.log('To start the project:');
     console.log(`   cd ${chalk.green(responses.name)}`);
     console.log('   meteor\n');
-    console.log(`Thank you for using ${chalk.yellow('Tableside')}`);
+    console.log(`Thank you for using ${chalk.yellow('Tableside')}.`);
     console.log(`Have fun with ${chalk.cyan(responses.name)}!\n`);
   } catch (err) {
     if (err) {
