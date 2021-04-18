@@ -24,6 +24,7 @@
     "inquirer": "^8.0.0",
     "lodash": "^4.17.21",
     "minimist": "^1.2.5",
+    "path": "^0.12.7",
     "replace-in-file": "^6.2.0"
   }
 }

@@ -1,9 +1,12 @@
 const CLI = require('clui');
-const fs = require('fs-extra')
+const fs = require('fs-extra');
 const replace = require('replace-in-file');
 const Spinner = CLI.Spinner;
 const _ = require('lodash');
 const util = require('util');
+const chalk = require('chalk');
+const path = require('path');
+
 const exec = util.promisify(require('child_process').exec);
 const UIs = {
   "SemanticUI": {...require('../modules/semanticUI-react.json')},
@@ -13,19 +16,21 @@ const UIs = {
 
 module.exports = {
   setupBoilerplate: async (responses) => {
-    const srcDir = `./skeletons/meteor/${responses.frontend.toLowerCase()}/`;
-    const destDir = './src/';
+    const skeleton = `skeletons/meteor/${responses.frontend.toLowerCase()}/`;
+    const srcDir = path.join(__dirname, '..', skeleton)
+    const destDir = `${process.cwd()}/${responses.name}`;
 
     const status = new Spinner('Generating Boilerplate...');
     status.start();
 
-    // Delete folder
-    await fs.remove(destDir)
+    console.log(`Creating the new app in ${chalk.green(destDir)}`);
+
+    await fs.ensureDir(destDir)
       .then(() => {
-        console.log('Previous version removed!');
+        console.log('Directoy Created');
       })
       .catch(err => {
-        console.error(err);
+        console.error(err)
       });
 
     // create folder
@@ -50,10 +55,10 @@ module.exports = {
 
     const options = {
         files: [
-          './src/.meteor/*',
-          './src/*',
-          './src/*/*',
-          './src/*/*/*',
+          `${destDir}/.meteor/*`,
+          `${destDir}/*`,
+          `${destDir}/*/*`,
+          `${destDir}/*/*/*`,
         ],
         from: [],
         to: []
@@ -77,7 +82,7 @@ module.exports = {
           console.log(error);
       });
 
-    await exec(`cd ./src && npm install ${toReplace['NPM']}`).then(_ => {
+    await exec(`cd ${destDir} && npm install ${toReplace['NPM']}`).then(_ => {
       console.log('npm package added!');
       status.stop();
     });
