@@ -23,7 +23,7 @@ const run = async () => {
     const projectName = argv._[0];
 
     if (projectName) {
-      console.log(`Initializing ${chalk.green(projectName)}\n`);
+      console.log(`Initializing ${chalk.cyan(projectName)}\n`);
     }
 
     const responses = await inquirer.askProjectInfo(projectName);
@@ -39,7 +39,7 @@ const run = async () => {
     console.log(`   cd ${chalk.green(responses.name)}`);
     console.log('   meteor\n');
     console.log(`Thank you for using ${chalk.yellow('Tableside')}`);
-    console.log('Have fun with your project!\n');
+    console.log(`Have fun with ${chalk.cyan(responses.name)}!\n`);
   } catch (err) {
     if (err) {
       console.log(chalk.red(err));
