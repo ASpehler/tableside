@@ -12,7 +12,10 @@ cd my-app
 meteor
 ```
 
-_([npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+ and higher, see [instructions for older npm versions](https://gist.github.com/gaearon/4064d3c23a77c74a3614c498a8bb1c5f))_
+##### Notes:
+
+- To install Meteor, follow these [instructions](https://www.meteor.com/developers/install).
+- [npx](https://medium.com/@maybekatz/introducing-npx-an-npm-package-runner-55f7d4bd282b) comes with npm 5.2+ and higher. If using lower versions, you will need to install the package globally using `npm install -g tableside` and start it by typing `tableside`.
 
 ### Modules
 
