@@ -1,7 +1,7 @@
 {
-  "name": "boilercart",
+  "name": "tableside",
   "version": "1.0.0",
-  "description": "cli to create boilercart",
+  "description": "cli to create boilerplates",
   "main": "index.js",
   "private": true,
   "bin": {
