@@ -36,7 +36,7 @@ const run = async () => {
 
     console.log(chalk.green('Done!\n'));
     console.log('To start the project:');
-    console.log(`   cd ${chalk.green(projectName)}`);
+    console.log(`   cd ${chalk.green(responses.name)}`);
     console.log('   meteor\n');
     console.log(`Thank you for using ${chalk.yellow('Tableside')}`);
     console.log('Have fun with your project!\n');
