@@ -12,7 +12,6 @@
     "CLI"
   ],
   "author": "Alexandre Spehler",
-  "license": "ISC",
   "devDependencies": {
     "chalk": "^4.1.0",
     "clear": "^0.1.0",
