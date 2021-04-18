@@ -33,4 +33,4 @@ Mix and match any modules! This application is currently being worked on, I will
 
 Do not hesitate to open an issue if you find any bug or create a pull request.
 
-If you have suggestions or just want to talk, hit me up on Twitter! [@ASpehler](https://twitter.com/aspehler)
+If you have suggestions or just want to talk, hit me up on Twitter! [@ASpehler](https://twitter.com/ASpehler)
