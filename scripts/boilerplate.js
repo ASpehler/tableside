@@ -37,7 +37,6 @@ module.exports = {
 
     status.message('Generating boilerplate');
 
-    // create folder
     await fs.copy(srcDir, destDir)
       .catch((err) => {
         status.message(err);

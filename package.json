@@ -23,7 +23,6 @@
     "fs-extra": "^9.1.0",
     "inquirer": "^8.0.0",
     "minimist": "^1.2.5",
-    "path": "^0.12.7",
     "replace-in-file": "^6.2.0"
   }
 }
