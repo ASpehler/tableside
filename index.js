@@ -2,10 +2,10 @@
 
 const chalk = require('chalk');
 const clear = require('clear');
+const minimist = require('minimist');
 
 const repo = require('./scripts/boilerplate');
 const inquirer = require('./scripts/inquirer');
-
 
 clear();
 
@@ -19,15 +19,31 @@ ____o______o_________________________________________________\n`));
 
 const run = async () => {
   try {
-    const responses = await inquirer.askProjectInfo();
+    const argv = minimist(process.argv.slice(2));
+    const projectName = argv._[0];
+
+    if (projectName) {
+      console.log(`Initializing ${chalk.green(projectName)}\n`);
+    }
+
+    const responses = await inquirer.askProjectInfo(projectName);
+
+    if (projectName) {
+      responses.name = projectName;
+    }
 
     await repo.setupBoilerplate(responses);
 
-    console.log(chalk.green('All done!'));
-  } catch(err) {
-      if (err) {
-        console.log(chalk.red(err));
-      }
+    console.log(chalk.green('Done!\n'));
+    console.log('To start the project:');
+    console.log(`   cd ${chalk.green(projectName)}`);
+    console.log('   meteor\n');
+    console.log(`Thank you for using ${chalk.yellow('Tableside')}`);
+    console.log('Have fun with your project!\n');
+  } catch (err) {
+    if (err) {
+      console.log(chalk.red(err));
+    }
   }
 };
 
