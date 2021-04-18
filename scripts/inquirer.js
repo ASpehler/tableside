@@ -1,5 +1,5 @@
 const inquirer = require('inquirer');
-const files = require('./directories');
+const directories = require('./directories');
 
 module.exports = {
   askProjectInfo: (projectName) => {
@@ -8,13 +8,18 @@ module.exports = {
         type: 'input',
         name: 'name',
         message: 'Enter a name for your project:',
-        default: files.getCurrentDirectoryBase(),
+        default: directories.getCurrentDirectoryBase(),
         validate(value) {
-          if (value.length) {
-            return true;
+          if (!value.length) {
+            return 'Please enter a name for your project';
           }
 
-          return 'Please enter a name for your project.';
+          const directoryExists = directories.directoryExists(value);
+          if (directoryExists) {
+            return 'Directory already exist';
+          }
+
+          return true;
         },
       },
       {

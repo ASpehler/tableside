@@ -6,6 +6,7 @@ const minimist = require('minimist');
 
 const repo = require('./scripts/boilerplate');
 const inquirer = require('./scripts/inquirer');
+const directories = require('./scripts/directories');
 
 clear();
 
@@ -24,6 +25,12 @@ const run = async () => {
 
     if (projectName) {
       console.log(`Initializing ${chalk.cyan(projectName)}\n`);
+    }
+
+    const directoryExists = directories.directoryExists(projectName);
+    if (directoryExists) {
+      console.error(chalk.red('Directory already exist\n'));
+      return;
     }
 
     const responses = await inquirer.askProjectInfo(projectName);

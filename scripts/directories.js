@@ -4,5 +4,5 @@ const path = require('path');
 module.exports = {
   getCurrentDirectoryBase: () => path.basename(process.cwd()),
 
-  directoryExists: (filePath) => fs.existsSync(filePath),
+  directoryExists: (name) => fs.existsSync(`${process.cwd()}/${name}`),
 };
