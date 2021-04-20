@@ -21,9 +21,9 @@ const UIs = {
 
 module.exports = {
   setupBoilerplate: async (responses) => {
-    const skeleton = `skeletons/meteor/${responses.frontend.toLowerCase()}/`;
-    const srcDir = path.join(__dirname, '..', skeleton);
-    const destDir = `${process.cwd()}/${responses.name}`;
+    const skeletonPath = path.join('skeletons/meteor/', responses.frontend.toLowerCase());
+    const srcDir = path.join(__dirname, '..', skeletonPath);
+    const destDir = path.join(process.cwd(), responses.name);
 
     const status = new Spinner('Creating directories');
     status.start();

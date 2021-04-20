@@ -21,16 +21,15 @@ ____o______o_________________________________________________\n`));
 const run = async () => {
   try {
     const argv = minimist(process.argv.slice(2));
-    const projectName = argv._[0];
+    const projectName = argv._[0] || '';
 
     if (projectName) {
       console.log(`Initializing ${chalk.cyan(projectName)}\n`);
-    }
-
-    const directoryExists = directories.directoryExists(projectName);
-    if (directoryExists) {
-      console.error(chalk.red('Directory already exist.\n'));
-      return;
+      const directoryExists = directories.directoryExists(projectName);
+      if (directoryExists) {
+        console.error(chalk.red('Directory already exist.\n'));
+        return;
+      }
     }
 
     const responses = await inquirer.askProjectInfo(projectName);
