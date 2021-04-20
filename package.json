@@ -1,6 +1,6 @@
 {
   "name": "tableside",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "CLI to create boilerplates",
   "keywords": [
     "boilerplate",
@@ -13,6 +13,7 @@
     "url": "https://twitter.com/ASpehler"
   },
   "main": "index.js",
+  "bin": "./index.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
