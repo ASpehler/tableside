@@ -1,17 +1,21 @@
 {
   "name": "tableside",
-  "version": "1.0.0",
-  "description": "cli to create boilerplates",
+  "version": "0.1.0",
+  "description": "CLI to create boilerplates",
+  "keywords": [
+    "boilerplate",
+    "CLI"
+  ],
+  "license": "MIT",
+  "author": {
+    "name": "Alexandre Spehler",
+    "email": "alexandre@tablesidejs.com",
+    "url": "https://twitter.com/ASpehler"
+  },
   "main": "index.js",
-  "private": true,
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "keywords": [
-    "Boilerplate",
-    "CLI"
-  ],
-  "author": "Alexandre Spehler",
   "devDependencies": {
     "chalk": "^4.1.0",
     "clear": "^0.1.0",
