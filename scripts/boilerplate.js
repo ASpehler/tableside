@@ -83,8 +83,9 @@ module.exports = {
 
     status.message('Installing npm packages');
 
-    await exec(`cd ${destDir} && npm install ${toReplace.NPM}`).then(() => {
+    return exec(`cd ${destDir} && npm install ${toReplace.NPM}`).then(() => {
       status.stop();
+      return true;
     });
   },
 };
